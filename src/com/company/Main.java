@@ -54,10 +54,19 @@ public class Main {
                     }
                 }
                 int steps = Integer.parseInt(input);
-                FrogCommand cmd = FrogCommands.jumpRightCommand(frog, steps);
-                curCommand++;
-                commands.add(cmd);
-                cmd.doit();
+                FrogCommand cmd = null;
+                if (steps > 0) {
+                    cmd = FrogCommands.jumpRightCommand(frog, steps);
+                } else if (steps < 0){
+                    cmd = FrogCommands.jumpLeftCommand(frog, steps * -1);
+                }
+
+                if (cmd != null) {
+                    curCommand++;
+                    commands.add(cmd);
+                    cmd.doit();
+                }
+
             }
             System.out.println(frog);
         }
